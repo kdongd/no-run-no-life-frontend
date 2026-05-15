@@ -1,0 +1,185 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #03060b;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.header {
+    height: 78px;
+    background: rgba(0, 0, 0, 0.82);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 44px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: -1px;
+}
+
+.nav {
+    display: flex;
+    gap: 64px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.nav a.active {
+    color: #1687ff;
+    border-bottom: 3px solid #1687ff;
+    padding-bottom: 4px;
+}
+
+.hero {
+    height: 720px;
+    padding-top: 78px;
+    background:
+        linear-gradient(rgba(0,0,0,0.32), rgba(0,0,0,0.78)),
+        url("./images/boxing-hero.png");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-content {
+    padding-top: 86px;
+}
+
+.mini-badge {
+    display: inline-block;
+    border: 1px solid #1687ff;
+    color: #1687ff;
+    border-radius: 999px;
+    padding: 10px 24px;
+    font-size: 18px;
+    margin-bottom: 28px;
+}
+
+.hero-title {
+    font-size: 72px;
+    font-weight: 900;
+    line-height: 1.25;
+    letter-spacing: -4px;
+}
+
+.blue {
+    color: #087bff;
+}
+
+.hero-desc {
+    margin-top: 22px;
+    color: #d7dce5;
+    font-size: 24px;
+    line-height: 1.5;
+}
+
+.hero-btn {
+    display: inline-block;
+    margin-top: 28px;
+    width: 320px;
+    padding: 18px 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #0672ff, #1687ff);
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.record-section {
+    width: 90%;
+    max-width: 1420px;
+    margin: -56px auto 60px;
+    padding: 34px 64px 32px;
+    background: rgba(8, 14, 23, 0.97);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 22px;
+    position: relative;
+    z-index: 10;
+}
+
+.record-top {
+    margin-bottom: 24px;
+}
+
+.record-title {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: rgba(255,255,255,0.025);
+}
+
+th {
+    padding: 18px 36px;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 400;
+    color: #aeb8c8;
+}
+
+td {
+    padding: 18px 36px;
+    border-bottom: 1px solid rgba(255,255,255,0.075);
+    font-size: 18px;
+    color: #d8dee8;
+}
+
+.empty {
+    padding: 80px 0;
+    text-align: center;
+    color: #97a4b5;
+    font-size: 20px;
+}
+
+.type-box {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: #f1f4f8;
+    font-weight: 500;
+}
+
+.icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.running {
+    background: rgba(0, 123, 255, 0.25);
+}
+
+.boxing {
+    background: rgba(255, 70, 70, 0.25);
+}
