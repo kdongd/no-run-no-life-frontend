@@ -133,6 +133,10 @@
                 <label class="form-label">운동 메모</label>
                 <input type="text" id="memo" class="form-control" placeholder="예: 샌드백 10R 진행">
             </div>
+            <div class="mb-4">
+                <label class="form-label">운동 날짜/시간</label>
+                <input type="datetime-local" id="workoutDateTime" class="form-control">
+            </div>
             <div class="helper-box">
                 입력한 운동 기록은 목록 화면에서 바로 확인할 수 있습니다.
                 서버를 재시작하면 메모리 저장소의 기록은 초기화됩니다.
@@ -156,9 +160,10 @@ function submitWorkout() {
     const type = document.getElementById('type').value;
     const duration = document.getElementById('duration').value;
     const memo = document.getElementById('memo').value;
+    const workoutDateTime = document.getElementById('workoutDateTime').value;
 
-    if (!duration || !memo) {
-        alert('모든 항목을 입력해주세요.');
+    if (!duration || !workoutDateTime) {
+        alert('운동 시간과 날짜/시간은 필수입니다.');
         return;
     }
 
@@ -170,7 +175,12 @@ function submitWorkout() {
     fetch('http://localhost:8080/api/workouts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ type, duration: parseInt(duration), memo })
+        body: JSON.stringify({
+            type,
+            durationMinutes: parseInt(duration),
+            memo,
+            workoutDateTime: workoutDateTime
+        })
     })
     .then(res => {
         if (!res.ok) {
