@@ -3,6 +3,16 @@ const API_URL = 'http://localhost:8080/api/workouts';
 const RUNNING_ICON = `🏃`;
 const BOXING_ICON = `🥊`;
 
+function formatDateTime(dateTimeStr) {
+    const date = new Date(dateTimeStr);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    return `${year}.${month}.${day} ${hours}:${minutes}`;
+}
+
 function renderWorkouts(workouts) {
     const container = document.getElementById('workout-list');
 
@@ -23,8 +33,9 @@ function renderWorkouts(workouts) {
                     ${w.type === 'RUNNING' ? '러닝' : '복싱'}
                 </div>
             </td>
-            <td>${w.duration}분</td>
+            <td>${w.durationMinutes}분</td>
             <td>${w.memo}</td>
+            <td>${formatDateTime(w.workoutDateTime)}</td>
         </tr>
     `).join('');
 
@@ -36,6 +47,7 @@ function renderWorkouts(workouts) {
                     <th>운동 종류</th>
                     <th>운동 시간</th>
                     <th>메모</th>
+                    <th>날짜/시간</th>
                 </tr>
             </thead>
             <tbody>${rows}</tbody>
