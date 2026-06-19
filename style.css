@@ -1,0 +1,248 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background: #03060b;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+.header {
+    height: 78px;
+    background: rgba(0, 0, 0, 0.82);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 44px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+.logo {
+    font-size: 28px;
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: -1px;
+}
+.nav {
+    display: flex;
+    gap: 64px;
+    font-size: 16px;
+    font-weight: 700;
+}
+.nav a.active {
+    color: #1687ff;
+    border-bottom: 3px solid #1687ff;
+    padding-bottom: 4px;
+}
+.hero {
+    height: 720px;
+    padding-top: 78px;
+    background:
+        linear-gradient(rgba(0,0,0,0.32), rgba(0,0,0,0.78)),
+        url("./images/boxing-hero.png");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.hero-content { padding-top: 86px; }
+.mini-badge {
+    display: inline-block;
+    border: 1px solid #1687ff;
+    color: #1687ff;
+    border-radius: 999px;
+    padding: 10px 24px;
+    font-size: 18px;
+    margin-bottom: 28px;
+}
+.hero-title {
+    font-size: 72px;
+    font-weight: 900;
+    line-height: 1.25;
+    letter-spacing: -4px;
+}
+.blue { color: #087bff; }
+.hero-desc {
+    margin-top: 22px;
+    color: #d7dce5;
+    font-size: 24px;
+    line-height: 1.5;
+}
+.hero-btn {
+    display: inline-block;
+    margin-top: 28px;
+    width: 320px;
+    padding: 18px 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #0672ff, #1687ff);
+    font-size: 20px;
+    font-weight: 800;
+}
+.record-section {
+    width: 90%;
+    max-width: 1420px;
+    margin: -56px auto 60px;
+    padding: 34px 64px 32px;
+    background: rgba(8, 14, 23, 0.97);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 22px;
+    position: relative;
+    z-index: 10;
+}
+.record-top { margin-bottom: 24px; }
+.record-title {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+table { width: 100%; border-collapse: collapse; }
+thead { background: rgba(255,255,255,0.025); }
+th {
+    padding: 18px 36px;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 400;
+    color: #aeb8c8;
+}
+td {
+    padding: 18px 36px;
+    border-bottom: 1px solid rgba(255,255,255,0.075);
+    font-size: 18px;
+    color: #d8dee8;
+}
+.empty {
+    padding: 80px 0;
+    text-align: center;
+    color: #97a4b5;
+    font-size: 20px;
+}
+.type-box {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: #f1f4f8;
+    font-weight: 500;
+}
+.icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+.running { background: rgba(0, 123, 255, 0.25); }
+.boxing { background: rgba(255, 70, 70, 0.25); }
+
+/* form 페이지 */
+.form-page {
+    background-color: #17191f;
+    color: #f9fafb;
+}
+.form-page .page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 24px;
+}
+.form-page .logo {
+    color: #38a3ff;
+    font-size: 32px;
+    font-weight: 900;
+    font-style: normal;
+    letter-spacing: 1px;
+    margin-bottom: 32px;
+}
+.form-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: #20222b;
+    border: 1px solid #343743;
+    border-radius: 28px;
+    overflow: hidden;
+    min-height: 620px;
+}
+.form-left {
+    padding: 52px;
+    border-right: 1px solid #343743;
+}
+.form-right {
+    padding: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #9ca3af;
+}
+.form-page h1 {
+    font-size: 40px;
+    font-weight: 900;
+    margin-bottom: 16px;
+}
+.description {
+    color: #9ca3af;
+    margin-bottom: 42px;
+    line-height: 1.6;
+}
+.form-label {
+    color: #cbd5e1;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.form-control, .form-select {
+    background-color: #292c36;
+    border: 1px solid #3b3f4c;
+    color: #f9fafb;
+    border-radius: 16px;
+    padding: 16px 18px;
+    height: 58px;
+}
+.form-control::placeholder { color: #6b7280; }
+.form-control:focus, .form-select:focus {
+    background-color: #292c36;
+    color: #f9fafb;
+    border-color: #38a3ff;
+    box-shadow: 0 0 0 3px rgba(56,163,255,0.15);
+}
+.helper-box {
+    background-color: #292c36;
+    border: 1px solid #3b3f4c;
+    border-radius: 16px;
+    color: #9ca3af;
+    padding: 18px;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+}
+.main-btn {
+    background-color: #38a3ff;
+    border: none;
+    color: white;
+    border-radius: 16px;
+    padding: 15px 28px;
+    font-weight: 800;
+    cursor: pointer;
+}
+.main-btn:hover { background-color: #1688e8; }
+.sub-btn {
+    border: 1px solid #4b5563;
+    color: #e5e7eb;
+    border-radius: 16px;
+    padding: 15px 28px;
+    font-weight: 800;
+    text-decoration: none;
+    background: none;
+    cursor: pointer;
+}
+.sub-btn:hover { border-color: #6b7280; color: white; }
+.right-icon { font-size: 54px; margin-bottom: 24px; }
+.right-title { font-size: 22px; font-weight: 800; color: #f9fafb; margin-bottom: 12px; }
