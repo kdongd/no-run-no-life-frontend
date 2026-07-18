@@ -246,3 +246,45 @@ td {
 .sub-btn:hover { border-color: #6b7280; color: white; }
 .right-icon { font-size: 54px; margin-bottom: 24px; }
 .right-title { font-size: 22px; font-weight: 800; color: #f9fafb; margin-bottom: 12px; }
+
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 24px;
+}
+.filter-bar .form-select,
+.filter-bar .form-control {
+    background-color: #292c36;
+    border: 1px solid #3b3f4c;
+    color: #f9fafb;
+    border-radius: 16px;
+    padding: 10px 14px;
+    height: 44px;
+    font-size: 14px;
+}
+.filter-bar .main-btn,
+.filter-bar .sub-btn {
+    height: 44px;
+    padding: 0 20px;
+    font-size: 14px;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-top: 24px;
+}
+.pagination .sub-btn {
+    padding: 10px 20px;
+}
+.pagination .sub-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+.page-indicator {
+    color: #9ca3af;
+    font-size: 14px;
+}
