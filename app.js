@@ -27,7 +27,6 @@ function renderWorkouts(page) {
 
     const rows = workouts.map(w => `
         <tr>
-            <td>${w.id}</td>
             <td>
                 <div class="type-box">
                     ${w.type === 'RUNNING'
@@ -47,7 +46,6 @@ function renderWorkouts(page) {
         <table>
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>운동 종류</th>
                     <th>운동 시간</th>
                     <th>메모</th>
