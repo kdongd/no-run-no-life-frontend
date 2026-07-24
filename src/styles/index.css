@@ -47,7 +47,7 @@ a {
     padding-top: 78px;
     background:
         linear-gradient(rgba(0,0,0,0.32), rgba(0,0,0,0.78)),
-        url("./images/boxing-hero.png");
+        url("../assets/boxing-hero.png");
     background-size: cover;
     background-position: center;
     display: flex;
@@ -401,4 +401,30 @@ td {
 }
 .danger-btn:hover {
     background-color: rgba(239, 68, 68, 0.1);
+}
+
+/* 상세 페이지 (신규) */
+.detail-page {
+    padding: 118px 24px 60px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.detail-card {
+    background-color: #20222b;
+    border: 1px solid #343743;
+    border-radius: 20px;
+    padding: 32px;
+}
+.detail-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
+}
+.field-group {
+    margin-bottom: 24px;
+}
+.field-error {
+    color: #ff6b6b;
+    font-size: 13px;
+    margin-top: 6px;
 }
