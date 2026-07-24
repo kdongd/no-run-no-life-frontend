@@ -28,7 +28,28 @@
         <div class="record-top">
             <div class="record-title">운동 기록 목록</div>
         </div>
+
+        <div class="filter-bar">
+            <select id="filter-type" class="form-select">
+                <option value="">전체 종류</option>
+                <option value="RUNNING">러닝</option>
+                <option value="BOXING">복싱</option>
+            </select>
+            <input type="datetime-local" id="filter-from" class="form-control" title="시작 일시">
+            <input type="datetime-local" id="filter-to" class="form-control" title="종료 일시">
+            <select id="filter-sort" class="form-select">
+                <option value="workoutDateTime,desc">최신순</option>
+                <option value="workoutDateTime,asc">오래된순</option>
+                <option value="durationMinutes,desc">운동시간 긴순</option>
+                <option value="durationMinutes,asc">운동시간 짧은순</option>
+                <option value="type,asc">종류순</option>
+            </select>
+            <button class="main-btn" onclick="applyFilter()">검색</button>
+            <button class="sub-btn" onclick="resetFilter()">초기화</button>
+        </div>
+
         <div id="workout-list"></div>
+        <div id="pagination" class="pagination"></div>
     </section>
 
     <script src="app.js"></script>
