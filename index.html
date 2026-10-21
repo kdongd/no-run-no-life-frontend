@@ -1,57 +1,13 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>NO RUN NO LIFE</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-    <header class="header">
-        <div class="logo">NO RUN NO LIFE</div>
-        <nav class="nav">
-            <a href="index.html" class="active">홈</a>
-            <a href="form.html">운동 기록하기</a>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <div class="hero-content">
-            <div class="mini-badge">RUNNING & BOXING LOG</div>
-            <h1 class="hero-title">기록이 <br><span class="blue">나를</span> 만든다</h1>
-            <p class="hero-desc">오늘의 운동을 남기고,<br>어제보다 나은 나를 확인하세요.</p>
-            <a href="form.html" id="hero-btn" class="hero-btn">운동 기록 시작하기 →</a>
-        </div>
-    </section>
-
-    <section class="record-section">
-        <div class="record-top">
-            <div class="record-title">운동 기록 목록</div>
-        </div>
-
-        <div class="filter-bar">
-            <select id="filter-type" class="form-select">
-                <option value="">전체 종류</option>
-                <option value="RUNNING">러닝</option>
-                <option value="BOXING">복싱</option>
-            </select>
-            <input type="datetime-local" id="filter-from" class="form-control" title="시작 일시">
-            <input type="datetime-local" id="filter-to" class="form-control" title="종료 일시">
-            <select id="filter-sort" class="form-select">
-                <option value="workoutDateTime,desc">최신순</option>
-                <option value="workoutDateTime,asc">오래된순</option>
-                <option value="durationMinutes,desc">운동시간 긴순</option>
-                <option value="durationMinutes,asc">운동시간 짧은순</option>
-                <option value="type,asc">종류순</option>
-            </select>
-            <button class="main-btn" onclick="applyFilter()">검색</button>
-            <button class="sub-btn" onclick="resetFilter()">초기화</button>
-        </div>
-
-        <div id="workout-list"></div>
-        <div id="pagination" class="pagination"></div>
-    </section>
-
-    <script src="app.js"></script>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>no-run-no-life-frontend</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
