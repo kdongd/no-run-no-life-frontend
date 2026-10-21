@@ -1,95 +1,29 @@
-# 🥊 NO RUN NO LIFE - Frontend
-> 기록이 실력을 만든다. 러닝과 복싱 기록을 남기는 웹 서비스의 프론트엔드입니다.
+# NO RUN NO LIFE — 프론트엔드 리디자인
 
----
+원본 업로드 프론트엔드 코드를 기반으로 작성한 독립적인 새 프로젝트 복사본입니다. 기존 Git/로컬 파일은 변경하지 않았습니다.
 
-## 📌 프로젝트 소개
-- 오늘의 운동을 기록하고, 어제보다 나은 나를 확인하세요.
-- 러닝과 복싱, 두 종목의 기록을 한 곳에서 관리하고 나만의 운동 루틴을 쌓아가는 서비스입니다.
-- Spring Boot REST API 서버와 분리된 SPA(Single Page Application) 프론트엔드입니다.
-- 백엔드 레포: [no-run-no-life-backend2](https://github.com/kdongd/no-run-no-life-backend2)
+## 실행
 
----
+1. 이 ZIP을 새 폴더에 압축 해제합니다.
+2. 기존 프로젝트의 `.env`에서 **필요한 값만** 이 새 폴더의 `.env`로 직접 설정하세요. 비밀 키를 Git에 올리지 마세요.
+   - `VITE_API_BASE_URL`은 기존 프로젝트와 같은 백엔드 API 주소를 사용하세요. 예: `http://localhost:8080` (서버 경로 설정에 따라 다를 수 있음).
+   - Google 로그인 사용 시 `VITE_GOOGLE_CLIENT_ID`도 기존 설정을 사용하세요.
+3. 터미널에서 `npm install`, `npm run dev` 실행 후 표시되는 로컬 주소에 접속합니다.
 
-## 🛠 기술 스택
-| 분류 | 기술 |
-|------|------|
-| 빌드 도구 | Vite |
-| UI 라이브러리 | React |
-| 라우팅 | React Router (react-router-dom) |
-| 차트 | Chart.js (react-chartjs-2) |
-| 스타일 | CSS (기존 다크 테마 그대로 유지) |
-| 상태 관리 | React 내장 상태(useState/useEffect) — 별도 상태관리 라이브러리 미도입 |
+## 포함된 기능
 
----
+- 화이트/스포츠 블루 반응형 사이드바 레이아웃
+- 메인 대시보드(이번 달 운동, 운동 달력, 최근 기록, 연간 운동 잔디, 상태 판정)
+- 월간 운동 캘린더 및 날짜별 운동 기록 조회/추가
+- 운동 기록 목록 검색/정렬/페이지네이션
+- 기존 운동 등록·수정·삭제·상세, 로그인·회원가입·닉네임 기능 유지
+- 운동 후 컨디션 입력/수정: `GET/PUT /workouts/{workoutId}/condition`
+- 룰 판정 및 AI 코칭: `GET /coaching/assessment`, `POST /coaching`
+- 기존 운동 통계 API 활용한 차트
 
-## ⚙️ 실행 방법
-1. 백엔드 서버 먼저 실행 (`localhost:8080`)
-2. `.env.example`을 참고해 `.env` 파일 생성 (`VITE_API_BASE_URL` 설정)
-3. 의존성 설치
+## 주의
 
-       npm install
-
-4. 개발 서버 실행
-
-       npm run dev
-
-5. 브라우저에서 안내되는 주소(기본 `http://localhost:5173`, 포트 충돌 시 자동으로 다음 포트 사용) 접속
-
----
-
-## 📁 프로젝트 구조
-
-    src/
-    ├── main.jsx              # 진입점, 라우터 설정
-    ├── App.jsx               # 라우트 정의
-    ├── api/
-    │   └── workoutApi.js     # 백엔드 API 호출 모음
-    ├── pages/
-    │   ├── WorkoutListPage.jsx    # 목록 + 검색/필터/정렬 + 페이징
-    │   ├── WorkoutFormPage.jsx    # 등록/수정 겸용, 타입별 필드 동적 노출
-    │   ├── WorkoutDetailPage.jsx  # 상세 조회 + 삭제
-    │   └── StatsPage.jsx          # 타입별/월별 통계 차트
-    ├── assets/
-    │   └── boxing-hero.png
-    └── styles/
-        └── index.css
-
----
-
-## 📦 페이지 설명
-
-### WorkoutListPage
-- 헤더, 히어로 섹션, 운동 기록 목록 표시
-- 종류/기간/정렬 필터 바 제공
-- 백엔드 API(`GET /workouts`)를 호출해 목록 렌더링, 페이지네이션 응답 구조 대응
-- 목록 행 클릭 시 상세 페이지(`/workouts/:id`)로 이동
-
-### WorkoutFormPage
-- `mode` prop으로 등록(`create`)/수정(`edit`) 겸용 처리
-- 운동 종류(러닝/복싱)에 따라 타입 전용 입력 필드가 동적으로 전환
-- 수정 모드에서는 운동 종류 변경 불가(백엔드의 타입 변경 제한 정책과 일치)
-- 세부 기록(라운드/구간) 동적 추가/삭제
-- 백엔드 API(`POST /workouts`, `PUT /workouts/{id}`)로 데이터 전송
-- 400 응답 시 errors 배열 파싱 → 각 필드 아래 에러 메시지 표시
-
-### WorkoutDetailPage
-- 단건 조회(`GET /workouts/{id}`), 타입별 속성 및 세부 기록 표시
-- 수정 페이지로 이동하는 버튼, 삭제(`DELETE /workouts/{id}`) 버튼 제공
-
-### StatsPage
-- 타입별 통계(`GET /workouts/stats/by-type`), 월별 통계(`GET /workouts/stats/monthly`)를 Chart.js 막대 그래프로 시각화
-
----
-
-## ✅ 구현 기능
-- 운동 기록 목록 조회 / 등록 / 상세 조회 / 수정 / 삭제
-- 러닝/복싱 타입별 전용 입력 필드 동적 전환
-- 세부 기록(라운드/구간) 동적 추가/삭제
-- 서버 사이드 검증 실패 시 400 응답 errors 배열 파싱 → 필드별 에러 메시지 표시
-- 종류·기간 조건 검색 + 정렬 (최신순/오래된순/운동시간순/종류순/거리순)
-- 페이지네이션 (이전/다음, 현재 페이지 표시)
-- 타입별/월별 통계 차트 (Chart.js)
-- API base URL을 `.env`로 분리 (`VITE_API_BASE_URL`)
-- React Router 기반 페이지 라우팅
-- 다크 테마 UI (기존 디자인 유지)
+- 백엔드 PR #11 (`baa7d99`)의 API DTO/엔드포인트를 기준으로 구성했습니다. 서버가 해당 버전으로 실행 중이어야 새 코칭 기능이 동작합니다.
+- 운동 잔디는 기존 페이지네이션 운동 조회 API에서 필요한 페이지를 모두 읽어 날짜별 횟수를 계산합니다. 데이터가 많으면 별도 집계 API가 더 효율적입니다.
+- 원본 ZIP의 `.env`, `.git`, `node_modules`는 포함하지 않았습니다.
+- 이 환경은 Vite의 macOS 네이티브 의존성을 Linux에서 실행할 수 없어 빌드/브라우저 실동작 검증을 완료하지 못했습니다. 로컬에서 `npm install` 후 `npm run build`로 확인해 주세요.

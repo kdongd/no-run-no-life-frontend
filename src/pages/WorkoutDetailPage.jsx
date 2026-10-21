@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { fetchWorkoutById, deleteWorkout } from '../api/workoutApi'
+import { clearToken, getNickname } from '../auth/token'
 
 const RUNNING_ICON = '🏃'
 const BOXING_ICON = '🥊'
@@ -18,6 +19,7 @@ function formatDateTime(dateTimeStr) {
 export default function WorkoutDetailPage() {
     const { id } = useParams()
     const navigate = useNavigate()
+    const nickname = getNickname()
     const [workout, setWorkout] = useState(null)
     const [error, setError] = useState(null)
 
@@ -26,17 +28,32 @@ export default function WorkoutDetailPage() {
             .then(data => setWorkout(data))
             .catch(err => {
                 console.error('상세 조회 실패:', err)
+                if (err.status === 401) {
+                    clearToken()
+                    navigate('/login', { replace: true })
+                    return
+                }
                 setError('상세 정보를 불러오지 못했습니다.')
             })
-    }, [id])
+    }, [id, navigate])
+
+    function handleLogout() {
+        clearToken()
+        navigate('/login', { replace: true })
+    }
 
     function handleDelete() {
         if (!confirm('이 운동 기록을 삭제하시겠습니까?')) return
 
         deleteWorkout(id)
             .then(res => {
+                if (res.status === 401) {
+                    clearToken()
+                    navigate('/login', { replace: true })
+                    return
+                }
                 if (!res.ok) throw new Error('삭제 실패')
-                navigate('/')
+                navigate('/workouts')
             })
             .catch(err => {
                 console.error('삭제 실패:', err)
@@ -50,7 +67,7 @@ export default function WorkoutDetailPage() {
                 <div className="detail-card">
                     <p>{error}</p>
                     <div className="detail-actions">
-                        <Link to="/" className="sub-btn">목록으로</Link>
+                        <Link to="/workouts" className="sub-btn">목록으로</Link>
                     </div>
                 </div>
             </div>
@@ -73,6 +90,8 @@ export default function WorkoutDetailPage() {
                     <Link to="/">홈</Link>
                     <Link to="/workouts/new">운동 기록하기</Link>
                     <Link to="/stats">통계</Link>
+                    {nickname && <span className="nav-nickname">{nickname}님</span>}
+                    <button type="button" className="nav-logout-btn" onClick={handleLogout}>로그아웃</button>
                 </nav>
             </header>
 
@@ -132,9 +151,10 @@ export default function WorkoutDetailPage() {
                     </div>
 
                     <div className="detail-actions">
-                        <Link to={`/workouts/${workout.id}/edit`} className="main-btn">수정</Link>
+                        <Link to={`/workouts/${workout.id}/condition`} className="main-btn">운동 후 컨디션 입력</Link>
+                        <Link to={`/workouts/${workout.id}/edit`} className="sub-btn">수정</Link>
                         <button className="danger-btn" onClick={handleDelete}>삭제</button>
-                        <Link to="/" className="sub-btn">목록으로</Link>
+                        <Link to="/workouts" className="sub-btn">목록으로</Link>
                     </div>
                 </div>
             </div>

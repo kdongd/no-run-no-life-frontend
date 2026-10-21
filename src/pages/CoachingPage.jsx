@@ -1,0 +1,19 @@
+import { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { fetchAssessment, generateCoaching } from '../api/coachingApi'
+import { clearToken } from '../auth/token'
+
+const LEVELS = { STOP: ['운동 중단 권고', 'danger'], REST: ['휴식 권고', 'warning'], REDUCE: ['강도 감소 권고', 'warning'], NORMAL: ['운동 상태 양호', 'success'], INSUFFICIENT_DATA: ['데이터 부족', 'neutral'] }
+export default function CoachingPage() {
+  const [assessment, setAssessment] = useState(null)
+  const [coaching, setCoaching] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [generating, setGenerating] = useState(false)
+  const [error, setError] = useState('')
+  const navigate = useNavigate()
+  useEffect(() => { let active = true; fetchAssessment().then(data => { if (active) setAssessment(data) }).catch(err => { if (!active) return; if (err.status === 401) { clearToken(); navigate('/login', { replace: true }) } else setError(err.message) }).finally(() => { if (active) setLoading(false) }); return () => { active = false } }, [navigate])
+  async function handleGenerate() { setGenerating(true); setError(''); try { const data = await generateCoaching(); setCoaching(data) } catch (err) { if (err.status === 401) { clearToken(); navigate('/login', { replace: true }) } else setError(err.message) } finally { setGenerating(false) } }
+  const current = coaching || assessment
+  const level = LEVELS[current?.level] || LEVELS.INSUFFICIENT_DATA
+  return <div><div className="page-heading"><div><span className="eyebrow">PERSONAL TRAINING ASSISTANT</span><h1>AI 운동 코칭 <span className="coaching-spark">✦</span></h1><p>최근 운동과 컨디션을 분석해 오늘의 운동 방향을 확인해요.</p></div></div>{error && <div className="alert-error" role="alert">{error}</div>}<div className="coaching-layout"><section className="surface coaching-main"><span className="eyebrow">CONDITION ASSESSMENT</span><h2>최근 운동 상태</h2>{loading ? <p className="muted">상태를 확인하는 중...</p> : <><span className={`status-pill status-${level[1]}`}>{level[0]}</span><p className="muted">판정 기간: {current?.evaluatedFrom || '-'} ~ {current?.evaluatedTo || '-'}</p><div className="reason-list">{current?.reasons?.length ? current.reasons.map((r, i) => <div className="reason-item" key={`${r.rule}-${i}`}><strong>{r.rule}</strong><p>{r.detail}</p></div>) : <p className="muted">현재 표시할 판정 근거가 없습니다.</p>}</div></>}<div className="coaching-divider"/><h2>AI 맞춤 코칭</h2><p className="muted">AI 코칭은 버튼을 누를 때 생성돼요. 생성 과정에서 외부 AI 서비스가 호출될 수 있어요.</p><button className="btn btn-primary" onClick={handleGenerate} disabled={generating || loading}>{generating ? 'AI 코칭 생성 중...' : '✦ AI 코칭 받기'}</button>{coaching && <div className="coaching-result">{coaching.status === 'GENERATED' && coaching.coaching ? <><h3>{coaching.coaching.summary}</h3><p>{coaching.coaching.explanation}</p>{coaching.coaching.recommendations?.length > 0 && <><h4>추천 행동</h4><ul>{coaching.coaching.recommendations.map((r, i) => <li key={i}>{r}</li>)}</ul></>}{coaching.coaching.caution && <div className="alert-warning">{coaching.coaching.caution}</div>}</> : <div className="alert-warning">{coaching.status === 'SKIPPED_INSUFFICIENT_DATA' ? '컨디션 데이터가 부족해 AI 코칭을 생성하지 않았어요. 운동 후 컨디션을 먼저 기록해 주세요.' : '현재 AI 코칭을 생성할 수 없어요. 위의 룰 기반 상태 판정은 확인할 수 있어요.'}</div>}</div>}</section><aside className="surface coaching-side"><span className="eyebrow">HOW IT WORKS</span><h2>더 정확한 코칭을 위해</h2><div className="coach-step"><span>01</span><div><strong>운동 기록</strong><p>러닝 또는 복싱 운동을 등록해요.</p></div></div><div className="coach-step"><span>02</span><div><strong>운동 후 컨디션</strong><p>RPE, 몸 상태, 통증을 입력해요.</p></div></div><div className="coach-step"><span>03</span><div><strong>상태 판정 및 코칭</strong><p>최근 기록을 분석해 운동 방향을 제안해요.</p></div></div><Link to="/workouts" className="btn btn-outline full-width">운동 기록 보러가기 →</Link><p className="coaching-disclaimer">운동 코칭은 의료 진단이 아니며, 심한 통증이나 이상 증상이 있으면 운동을 중단하고 전문가에게 상담하세요.</p></aside></div></div>
+}
