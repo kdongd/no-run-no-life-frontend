@@ -1,0 +1,528 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background: #03060b;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+.header {
+    height: 78px;
+    background: rgba(0, 0, 0, 0.82);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 44px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+.logo {
+    font-size: 28px;
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: -1px;
+}
+.nav {
+    display: flex;
+    gap: 64px;
+    font-size: 16px;
+    font-weight: 700;
+}
+.nav a.active {
+    color: #1687ff;
+    border-bottom: 3px solid #1687ff;
+    padding-bottom: 4px;
+}
+.nav-logout-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+.nav-logout-btn:hover {
+    color: #1687ff;
+}
+.hero {
+    height: 720px;
+    padding-top: 78px;
+    background:
+        linear-gradient(rgba(0,0,0,0.32), rgba(0,0,0,0.78)),
+        url("../assets/boxing-hero.png");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.hero-content { padding-top: 86px; }
+.mini-badge {
+    display: inline-block;
+    border: 1px solid #1687ff;
+    color: #1687ff;
+    border-radius: 999px;
+    padding: 10px 24px;
+    font-size: 18px;
+    margin-bottom: 28px;
+}
+.hero-title {
+    font-size: 72px;
+    font-weight: 900;
+    line-height: 1.25;
+    letter-spacing: -4px;
+}
+.blue { color: #087bff; }
+.hero-desc {
+    margin-top: 22px;
+    color: #d7dce5;
+    font-size: 24px;
+    line-height: 1.5;
+}
+.hero-btn {
+    display: inline-block;
+    margin-top: 28px;
+    width: 320px;
+    padding: 18px 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #0672ff, #1687ff);
+    font-size: 20px;
+    font-weight: 800;
+}
+.record-section {
+    width: 90%;
+    max-width: 1420px;
+    margin: -56px auto 60px;
+    padding: 34px 64px 32px;
+    background: rgba(8, 14, 23, 0.97);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 22px;
+    position: relative;
+    z-index: 10;
+}
+.record-top { margin-bottom: 24px; }
+.record-title {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+table { width: 100%; border-collapse: collapse; }
+thead { background: rgba(255,255,255,0.025); }
+th {
+    padding: 18px 36px;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 400;
+    color: #aeb8c8;
+}
+td {
+    padding: 18px 36px;
+    border-bottom: 1px solid rgba(255,255,255,0.075);
+    font-size: 18px;
+    color: #d8dee8;
+}
+.empty {
+    padding: 80px 0;
+    text-align: center;
+    color: #97a4b5;
+    font-size: 20px;
+}
+.type-box {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: #f1f4f8;
+    font-weight: 500;
+}
+.icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+.running { background: rgba(0, 123, 255, 0.25); }
+.boxing { background: rgba(255, 70, 70, 0.25); }
+
+/* form 페이지 */
+.form-page {
+    background-color: #17191f;
+    color: #f9fafb;
+}
+.form-page .page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 24px;
+}
+.form-page .logo {
+    color: #38a3ff;
+    font-size: 32px;
+    font-weight: 900;
+    font-style: normal;
+    letter-spacing: 1px;
+    margin-bottom: 32px;
+}
+.form-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: #20222b;
+    border: 1px solid #343743;
+    border-radius: 28px;
+    overflow: hidden;
+    min-height: 620px;
+}
+.form-left {
+    padding: 52px;
+    border-right: 1px solid #343743;
+}
+.form-right {
+    padding: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #9ca3af;
+}
+.form-page h1 {
+    font-size: 40px;
+    font-weight: 900;
+    margin-bottom: 16px;
+}
+.description {
+    color: #9ca3af;
+    margin-bottom: 42px;
+    line-height: 1.6;
+}
+.form-label {
+    display: block;
+    color: #cbd5e1;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.form-control, .form-select {
+    background-color: #292c36;
+    border: 1px solid #3b3f4c;
+    color: #f9fafb;
+    border-radius: 16px;
+    padding: 16px 18px;
+    height: 58px;
+}
+.form-control::placeholder { color: #6b7280; }
+.form-control:focus, .form-select:focus {
+    background-color: #292c36;
+    color: #f9fafb;
+    border-color: #38a3ff;
+    box-shadow: 0 0 0 3px rgba(56,163,255,0.15);
+}
+.helper-box {
+    background-color: #292c36;
+    border: 1px solid #3b3f4c;
+    border-radius: 16px;
+    color: #9ca3af;
+    padding: 18px;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+}
+.main-btn {
+    background-color: #38a3ff;
+    border: none;
+    color: white;
+    border-radius: 16px;
+    padding: 15px 28px;
+    font-weight: 800;
+    cursor: pointer;
+}
+.main-btn:hover { background-color: #1688e8; }
+.sub-btn {
+    border: 1px solid #4b5563;
+    color: #e5e7eb;
+    border-radius: 16px;
+    padding: 15px 28px;
+    font-weight: 800;
+    text-decoration: none;
+    background: none;
+    cursor: pointer;
+}
+.sub-btn:hover { border-color: #6b7280; color: white; }
+.right-icon { font-size: 54px; margin-bottom: 24px; }
+.right-title { font-size: 22px; font-weight: 800; color: #f9fafb; margin-bottom: 12px; }
+
+.auth-divider {
+    display: flex;
+    align-items: center;
+    color: #6b7280;
+    font-size: 13px;
+    margin: 28px 0;
+}
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #3b3f4c;
+}
+.auth-divider::before { margin-right: 16px; }
+.auth-divider::after { margin-left: 16px; }
+
+.google-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 28px;
+}
+
+.auth-switch {
+    text-align: center;
+    color: #9ca3af;
+    font-size: 14px;
+    margin-top: 20px;
+}
+.auth-switch a {
+    color: #38a3ff;
+    font-weight: 700;
+}
+.auth-switch a:hover {
+    text-decoration: underline;
+}
+
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 24px;
+}
+.filter-bar .form-select,
+.filter-bar .form-control {
+    background-color: #292c36;
+    border: 1px solid #3b3f4c;
+    color: #f9fafb;
+    border-radius: 16px;
+    padding: 10px 14px;
+    height: 44px;
+    font-size: 14px;
+}
+.filter-bar .main-btn,
+.filter-bar .sub-btn {
+    height: 44px;
+    padding: 0 20px;
+    font-size: 14px;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-top: 24px;
+}
+.pagination .sub-btn {
+    padding: 10px 20px;
+}
+.pagination .sub-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+.page-indicator {
+    color: #9ca3af;
+    font-size: 14px;
+}
+
+.workout-row {
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+.workout-row:hover {
+    background-color: rgba(255,255,255,0.04);
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+.modal-box {
+    background-color: #20222b;
+    border: 1px solid #343743;
+    border-radius: 20px;
+    width: 480px;
+    max-width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 28px;
+    border-bottom: 1px solid #343743;
+}
+.modal-close {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    font-size: 20px;
+    cursor: pointer;
+}
+.modal-close:hover { color: white; }
+.modal-body {
+    padding: 24px 28px;
+}
+.modal-summary {
+    display: flex;
+    gap: 16px;
+    color: #d8dee8;
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+.modal-memo {
+    color: #9ca3af;
+    font-size: 14px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+.detail-section-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #cbd5e1;
+    margin-bottom: 12px;
+}
+.detail-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.detail-item {
+    background-color: #292c36;
+    border: 1px solid #3b3f4c;
+    border-radius: 12px;
+    padding: 14px 16px;
+}
+.detail-item-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #f1f4f8;
+}
+.detail-seconds {
+    color: #38a3ff;
+    font-weight: 700;
+}
+.detail-note {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #9ca3af;
+}
+.detail-empty {
+    color: #6b7280;
+    font-size: 14px;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.modal-footer {
+    padding: 16px 28px 24px;
+    display: flex;
+    justify-content: flex-end;
+}
+.danger-btn {
+    background: none;
+    border: 1px solid #ef4444;
+    color: #ef4444;
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.danger-btn:hover {
+    background-color: rgba(239, 68, 68, 0.1);
+}
+
+/* 상세 페이지 (신규) */
+.detail-page {
+    padding: 118px 24px 60px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.detail-card {
+    background-color: #20222b;
+    border: 1px solid #343743;
+    border-radius: 20px;
+    padding: 32px;
+}
+.detail-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
+}
+.field-group {
+    margin-bottom: 24px;
+}
+.field-error {
+    color: #ff6b6b;
+    font-size: 13px;
+    margin-top: 6px;
+}
+
+/* I-01: 폼 그리드 시스템 + 인풋 너비 통일 */
+.form-left .form-control,
+.form-left .form-select {
+    width: 100%;
+}
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+.form-grid .field-group {
+    margin-bottom: 0;
+}
+.detail-row-grid {
+    display: grid;
+    grid-template-columns: 1fr 110px 1fr auto;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* 로그인/회원가입/닉네임 단일 컬럼 카드 */
+.form-card--single {
+    grid-template-columns: 1fr;
+    max-width: 640px;
+    margin: 0 auto;
+}
+.form-card--single .form-left {
+    border-right: none;
+}
+
+/* 닉네임 UI */
+.nickname-check-row {
+    display: flex;
+    gap: 10px;
+}
+.nickname-check-row .form-control {
+    flex: 1;
+}
+.field-success {
+    color: #38a3ff;
+    font-size: 13px;
+    margin-top: 6px;
+}
+.nav-nickname {
+    color: #d8dee8;
+    font-weight: 700;
+}
